@@ -42,7 +42,7 @@ function addFarmer(req, res) {
     var params = req.body;
     var farmer = new Farmer()
 
-    if(params.name && params.tasa && params.coffes && params.contact){
+    if(params.name && params.tasa && params.coffes){
 
         farmer.name = params.name;
         farmer.tasa = params.tasa + " SCAA";
@@ -60,9 +60,7 @@ function addFarmer(req, res) {
     }
     else if(!params.name) return res.status(500).send({ message: 'ERROR!, no has agregado un título a la publicacion' });
     else if(!params.tasa) return res.status(500).send({ message: 'ERROR!, la publicación necesita una descripción' });
-    else if(!params.coffes) return res.status(500).send({ message: 'ERROR!, no has agregado un título a la publicacion' });
-    else if(!params.contact) return res.status(500).send({ message: 'ERROR!, la publicación necesita una descripción' });
-    
+    else if(!params.coffes) return res.status(500).send({ message: 'ERROR!, no has agregado un título a la publicacion' });    
 }
 
 function getOneFarmer(req, res){
