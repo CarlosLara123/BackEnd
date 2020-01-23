@@ -87,18 +87,20 @@ function setImagen(req, res) {
 
     if(req.files){
         
-        History.findById(historyId, async (err) => {
+        History.findById(historyID, async (err) => {
             if (err) return res.status(500).send({ message: 'Error en la peticion' })
                 
-            var result = await cloudinary.v2.uploader.upload(req.files.images.path)
-
-                History.findByIdAndUpdate(historyId, { image: result.public_id, url: result.url }, { new: true }, (err, histoyUpdate) => {
+            var response = await cloudinary.v2.uploader.upload(req.files.image.path)
+            console.log(response, 'antes del update')
+                History.findByIdAndUpdate(historyID, { image: response.public_id, url: response.url }, { new: true }, (err, result) => {
                     if (err) return res.status(500).send({ message: 'Error en la peticion' })
 
-                    if (!historyUpdate) return res.status(404).send({ message: 'no se a podido actualizar el usuario' })
+                    if (!result) return res.status(404).send({ message: 'no se a podido actualizar el usuario' })
 
-                    if (histoyUpdate) {
-                        return res.status(200).send({ publication: histoyUpdate })
+                    if (result) {
+                        console.log(response)
+                        console.log(result)
+                        return res.status(200).send({ result })
                     }
                 })
         })

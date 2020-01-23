@@ -22,7 +22,7 @@ function subirImagen(req, res) {
             if (err) return res.status(500).send({ message: 'Error en la peticion' })
                 
             var result = await cloudinary.v2.uploader.upload(req.files.image.path)
-
+            console.log(result, 'antes del update')
                 Publication.findByIdAndUpdate(publicationId, { image: result.public_id, url: result.url }, { new: true }, (err, publicationUpdate) => {
                     if (err) return res.status(500).send({ message: 'Error en la peticion' })
 

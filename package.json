@@ -4,7 +4,7 @@
   "description": "API REst of proyect COVICAFE R.L.",
   "main": "index.js",
   "scripts": {
-	"start": "nodemon src/index.js",
+    "start": "nodemon src/index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "CARLOS LARA",
